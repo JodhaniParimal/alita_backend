@@ -1,0 +1,79 @@
+<style>
+    .w-30 {
+        width: 30%;
+    }
+
+    .w-40 {
+        width: 40%;
+    }
+
+    .thead.hoursListing th {
+        color: #000 !important;
+    }
+
+    .table thead.hoursListing tr>th,
+    .table tfoot.hoursListing tr>th {
+        background-color: #ffffff;
+        color: rgb(8, 61, 3);
+    }
+</style>
+<h1 style="font-size: 25px; padding: 20px 0;">Hours Report </h1>
+<table>
+    {{#if hours.hours_data}}
+    {{#each hours.hours_data as |hour index|}}
+    <table style="border:1px solid #1d1b1b; text-align:left; margin-bottom:10px;">
+        <thead class="hoursListing">
+            <tr>
+                <th colspan="4" style="color: rgb(8, 61, 3); border:0; background:#eee; padding:5px;">
+                    Date: {{hour.date}}
+                </th>
+            </tr>
+        </thead>
+        <tbody class="hoursListingFooter">
+            {{#each hour.data as |datah index|}}
+            <tr class="table_Row">
+                <td style="border:0; border-bottom:1px solid #000; padding:5px; width:25%;">
+                    <div>
+                    </div>
+                </td>
+                <td style="border:0; border-bottom:1px solid #000; padding:5px; width:40%;">
+                    <p style="color:rgb(18, 116, 9); margin:0; padding:0;">{{datah.project_title}}</p>
+                    <p style="margin:0; padding:5px 0; color:#5e5c5c;">{{datah.project_code}} - {{datah.client_name}}
+                    </p>
+                    <p style="color:#5e5c5c; margin:0; padding:0;">{{datah.profile}}</p>
+                </td>
+                <td style="border:0; border-bottom:1px solid #000; padding:5px; width:15%; text-align: center;">
+                    {{datah.hours}}</td>
+                {{#if datah.emp_tracker.name}}
+                <td style="border:0; border-bottom:1px solid #000; padding:5px; width:20%;">
+                    <div style="display:flex; color:#5e5c5c;">
+                        <p>{{datah.emp_tracker.name}}</p>
+                        <p style="padding-left: 9px;">{{datah.emp_tracker.number}}</p>
+                    </div>
+                </td>
+                {{/if}}
+            </tr>
+            {{/each}}
+        </tbody>
+        <thead class="hoursListingFooter">
+            <tr class="table_Row">
+                <th style="width:25%; padding:5px; color: rgb(16, 136, 5);">Total Hours of {{hour.date}}</th>
+                <th style="width:40%; padding:5px;"></th>
+                <th style="width:15%; padding:5px; color: rgb(16, 136, 5); text-align:center;">{{hour.total_hours}}</th>
+                <th style="width:20%; padding:5px;"></th>
+            </tr>
+        </thead>
+    </table>
+    {{/each}}
+    <table style="border:0; border-spacing:0; width:100%;">
+        <tfoot class="hoursListing">
+            <tr style="background-color: #ffffff; color: rgb(8, 61, 3); ">
+                <th colspan="2" style="border:0; padding:5px; border-bottom:1px solid #000; width:50%;">Total Date Range
+                    : {{hours.date_range.start}} To {{hours.date_range.end}}</th>
+                <th colspan="2" style="border:0; padding:5px; border-bottom:1px solid #000; width:50%;">Grand Total
+                    hours: {{hours.grand_total_hours}}</th>
+            </tr>
+        </tfoot>
+    </table>
+    {{/if}}
+</table>

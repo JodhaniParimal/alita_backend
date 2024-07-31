@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="content">
+        <h4 style="text-align: center; font-size: 30px; padding: 25px 0px;">Alita Tools Leave Management System</h4>
+    </div>
+    <table style="width:100%; margin:0; padding:0; text-align:center;">
+        <tr>
+            <td style="padding:10px; font-size:20px; color:#666; line-height:normal;">{{firstname}} {{lastname}} has
+                applied for leave on:</td>
+        </tr><br>
+        <tr>
+            <td>
+                <table style="width:100%; border-collapse: collapse;">
+                    <tr>
+                        <th style="border: 1px solid #000; padding: 8px;">Leave Date</th>
+                        <th style="border: 1px solid #000; padding: 8px;">Leave Type</th>
+                        <th style="border: 1px solid #000; padding: 8px;">Leave Category</th>
+                        <th style="border: 1px solid #000; padding: 8px;">From</th>
+                        <th style="border: 1px solid #000; padding: 8px;">To</th>
+                    </tr>
+                    {{#each newLeave}}
+                    <tr>
+                        <td style="border: 1px solid #000; padding: 8px;">{{leave_date}} ({{dayOfWeek}})</td>
+                        <td style="border: 1px solid #000; padding: 8px;">{{leave_type}}</td>
+                        <td style="border: 1px solid #000; padding: 8px;">{{leave_category}}</td>
+                        {{#if (eq leave_category 'short')}}
+                        <td style="border: 1px solid #000; padding: 8px;">{{from}}</td>
+                        <td style="border: 1px solid #000; padding: 8px;">{{to}}</td>
+                        {{else}}
+                        <td style="border: 1px solid #000; padding: 8px;">-</td>
+                        <td style="border: 1px solid #000; padding: 8px;">-</td>
+                        {{/if}}
+                    </tr>
+                    {{/each}}
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
